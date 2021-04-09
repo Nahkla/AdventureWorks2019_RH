@@ -20,7 +20,7 @@ SELECT TOP(10)
     -- here are our additional select statements
     ,c.CustomerID
 FROM [Person].[Person] p --projects schema Person with relation Person as p
-    INNER JOIN [Person].[BusinessEntityAddress] bea -- INNER JOIN (Theta Join) with Person.BusinessEntityAdress renamed as bea
+    INNER JOIN [Person].[BusinessEntityAddress] bea -- INNER JOIN (Theta Join) with Person.BusinessEntityAddress renamed as bea
     ON bea.[BusinessEntityID] = p.[BusinessEntityID] -- JOINed ON bea tuple BusinessEntityID. joined all non NULL BusinessEntityIDs of p x bea
     INNER JOIN [Person].[Address] a -- second INNER JOIN of p |x| bea with Schema Person and relation Address renamed as a
     ON a.[AddressID] = bea.[AddressID] -- JOINed on AddressID of bea
