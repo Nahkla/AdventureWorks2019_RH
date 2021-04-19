@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\extract_format\files\AW_2019_schemas.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
