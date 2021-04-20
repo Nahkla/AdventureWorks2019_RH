@@ -1,0 +1,6 @@
+adventureworks2019:
+  server : 'adv-srv.database.windows.net'
+  database : 'adventureworks2019'
+sre-shr-dwh:
+  server: 'adv-srv.database.windows.net'
+  database: 'sre-shr-dwh'

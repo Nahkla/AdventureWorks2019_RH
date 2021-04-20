@@ -3,14 +3,11 @@ import pandas as pd
 
 class LoadSchema:
 
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, db_df):
+        self.db_df = db_df
 
     def read_file(self):
-        file = self.file_path
-        schemas = pd.read_csv(
-            file, delimiter=';'
-        )
+        schemas = self.db_df
         mx_array = [
             schemas['schema'].tolist(),
             schemas['table'].tolist()

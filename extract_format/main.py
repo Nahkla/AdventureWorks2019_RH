@@ -1,13 +1,23 @@
-from packages import misc, load_schema, generate_table
+from packages import misc, load_schema, generate_table, load_sql
 
-file_path = misc.load_rel_path(
-    directory='files',
-    filename='AW_2019_schemas',
-    suffix='csv'
+query_path = misc.load_rel_path(
+    directory='sql_queries',
+    filename='schema_overview',
+    suffix=''
 )
 
+connection_details = misc.load_db_essentials()
+
+AdventureWorks2019 = load_sql.LoadSQL(
+    db_details=connection_details,
+    db_name='adventureworks2019',
+    sql_query=query_path
+).return_df()
+
+print(AdventureWorks2019.columns)
+
 schemas = load_schema.LoadSchema(
-    file_path=file_path
+    db_df=AdventureWorks2019
 ).read_file()
 
 table_format = generate_table.TableFormat(
@@ -16,4 +26,4 @@ table_format = generate_table.TableFormat(
     table_out='Person'
 ).format_block_increments()
 
-
+print(table_format)

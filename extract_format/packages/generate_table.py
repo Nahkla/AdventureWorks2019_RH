@@ -21,7 +21,7 @@ class TableFormat:
                    + ' {'
         attributes, domains = [
             self.schemas.loc[pd.IndexSlice[(self.schema_out, self.table_out)],
-                             col] for col in ['column', 'domain']
+                             col] for col in ['column_name', 'domain']
         ]
         attributes_domains = [
             ' '.join(i) for i in list(
