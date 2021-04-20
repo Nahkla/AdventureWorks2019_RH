@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\extract_format\packages\generate_table.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\extract_format\packages\load_schema.py">
           <value>
             <Attribute>

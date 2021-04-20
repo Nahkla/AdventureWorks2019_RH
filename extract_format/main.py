@@ -14,16 +14,14 @@ AdventureWorks2019 = load_sql.LoadSQL(
     sql_query=query_path
 ).return_df()
 
-print(AdventureWorks2019.columns)
-
 schemas = load_schema.LoadSchema(
     db_df=AdventureWorks2019
 ).read_file()
 
+print(schemas.loc['Sales', :].index.unique())
+
 table_format = generate_table.TableFormat(
     schemas=schemas,
-    schema_out='Person',
-    table_out='Person'
-).format_block_increments()
-
-print(table_format)
+    schema_out=None,
+    table_out='Store'
+).automate_blocks()
