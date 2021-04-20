@@ -8,7 +8,7 @@ file_path = misc.load_rel_path(
 )
 
 
-class RnF:
+class table_format:
     file = file_path
     schemas = schema_table = pd.read_csv(
         file, delimiter=';'
@@ -28,7 +28,6 @@ class RnF:
         ]
     )
     schemas.index = schemas_index
-
     schemas = schemas.drop(
         [
             'schema',
@@ -51,16 +50,25 @@ class RnF:
                    f'{self.schema_out[0]}{self.table_out[0]}' \
                    + ' {'
         self.schemas.sort_index(inplace=True)  # to get rid of performance warning line 837
-        attributes = self.schemas.loc[pd.IndexSlice[(self.schema_out, self.table_out)], 'column']
-        domains = self.schemas.loc[pd.IndexSlice[(self.schema_out, self.table_out)], 'domain']
+        attributes, domains = [
+            self.schemas.loc[pd.IndexSlice[(self.schema_out, self.table_out)],
+                             col] for col in ['column', 'domain']
+        ]
+        attributes_domains = [
+            ' '.join(i) for i in list(zip(attributes.tolist(), domains.tolist()))
+        ]
+
         bottom_line = '}'
 
         return print(
-            top_line, *attributes, bottom_line, sep="\n"
+            top_line,
+            *attributes_domains,
+            bottom_line,
+            sep="\n"
         )
 
 
-RnF(
+table_format(
     schema_out='Person',
     table_out='Person'
 ).format_schema()
