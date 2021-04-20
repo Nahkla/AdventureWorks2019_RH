@@ -1,5 +1,5 @@
 import pandas as pd
-from extract_format.classes import misc
+from extract_format.packages import misc
 
 file_path = misc.load_rel_path(
     directory='files',
@@ -8,7 +8,7 @@ file_path = misc.load_rel_path(
 )
 
 
-class table_format:
+class TableFormat:
     file = file_path
     schemas = schema_table = pd.read_csv(
         file, delimiter=';'
@@ -60,15 +60,9 @@ class table_format:
 
         bottom_line = '}'
 
-        return print(
+        return {'table': print(
             top_line,
             *attributes_domains,
             bottom_line,
-            sep="\n"
-        )
-
-
-table_format(
-    schema_out='Person',
-    table_out='Person'
-).format_schema()
+            sep="\n")
+        }
