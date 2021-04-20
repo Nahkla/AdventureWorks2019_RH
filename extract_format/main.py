@@ -1,10 +1,5 @@
-from packages import misc, load_schema, generate_table, load_sql, db_to_df
+from packages import misc, load_schema, generate_table, db_to_df, load_sql
 
-query_path = misc.load_rel_path(
-    directory='sql_queries',
-    filename='schema_overview',
-    suffix=''
-)
 
 connection_details = misc.load_db_essentials()
 
@@ -14,15 +9,13 @@ AdventureWorks2019 = load_sql.LoadSQL(
 ).connection()
 
 AdventureWorks2019_info = db_to_df.ExecuteQuery(
-    sql_query=query_path,
+    sql_query='schema_overview',
     connection=AdventureWorks2019
 ).ex_query()
 
 schemas = load_schema.LoadSchema(
     db_df=AdventureWorks2019_info
 ).read_file()
-
-print(schemas.columns)
 
 table_format = generate_table.TableFormat(
     schemas=schemas,

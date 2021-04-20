@@ -1,3 +1,4 @@
+from . import misc
 import pandas as pd
 
 
@@ -8,6 +9,11 @@ class ExecuteQuery:
         self.connection = connection
 
     def ex_query(self):
-        print(self.connection)
-        sql_query = open(self.sql_query, 'r').read()
+
+        query_path = misc.load_rel_path(
+            directory='sql_queries',
+            filename=self.sql_query,
+            suffix=''
+        )
+        sql_query = open(query_path, 'r').read()
         return pd.read_sql(sql_query, self.connection)
