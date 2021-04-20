@@ -3,16 +3,13 @@ class LoadSQL:
     def __init__(
             self,
             db_details,
-            db_name,
-            sql_query
+            db_name
     ):
         self.db_details = db_details
         self.db_name = db_name
-        self.sql_query = sql_query
 
-    def return_df(self):
+    def connection(self):
         import pyodbc
-        import pandas as pd
 
         cnxn = pyodbc.connect(
             f'DRIVER={self.db_details["driver_ls"]["ODBC"]["driver_17"]}'
@@ -21,6 +18,4 @@ class LoadSQL:
             f';UID={self.db_details["user_ls"]["admin"]["username"]};'
             f'PWD={self.db_details["user_ls"]["admin"]["pw"]}')
 
-        sql_query = open(self.sql_query, 'r').read()
-
-        return pd.read_sql(sql_query, cnxn)
+        return cnxn

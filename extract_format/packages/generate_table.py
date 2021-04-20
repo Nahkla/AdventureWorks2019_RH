@@ -15,10 +15,10 @@ class TableFormat:
 
     def format_block_increments(self, sch_out, tab_out):
 
-        top_line = f'Table {sch_out}{tab_out}' #\
-                   #+ ' as '\
-                   #+ f'{sch_out[:2]}{tab_out[:2]}' \
-                   #+ ' {'
+        top_line = f'Table {sch_out}{tab_out}'  # \
+        # + ' as '\
+        # + f'{sch_out[:2]}{tab_out[:2]}' \
+        # + ' {'
         attributes, domains = [
             self.schemas.loc[pd.IndexSlice[(sch_out, tab_out)],
                              col] for col in ['column_name', 'domain']
@@ -32,8 +32,6 @@ class TableFormat:
             )
         ]
         bottom_line = f'}}\n\n//end of {tab_out} table\n'
-
-
 
         return {
             'top_line': top_line,
