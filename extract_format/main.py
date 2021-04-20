@@ -22,6 +22,6 @@ print(schemas.loc['Sales', :].index.unique())
 
 table_format = generate_table.TableFormat(
     schemas=schemas,
-    schema_out=None,
+    schema_out='Sales',
     table_out='Store'
 ).automate_blocks()

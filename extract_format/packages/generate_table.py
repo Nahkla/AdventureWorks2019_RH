@@ -15,10 +15,10 @@ class TableFormat:
 
     def format_block_increments(self, sch_out, tab_out):
 
-        top_line = f'Table {sch_out}{tab_out}' \
-                   + ' as ' + \
-                   f'{sch_out[:2]}{tab_out[:2]}' \
-                   + ' {'
+        top_line = f'Table {sch_out}{tab_out}' #\
+                   #+ ' as '\
+                   #+ f'{sch_out[:2]}{tab_out[:2]}' \
+                   #+ ' {'
         attributes, domains = [
             self.schemas.loc[pd.IndexSlice[(sch_out, tab_out)],
                              col] for col in ['column_name', 'domain']
@@ -31,7 +31,9 @@ class TableFormat:
                 )
             )
         ]
-        bottom_line = f'}}\n//end of {tab_out} table'
+        bottom_line = f'}}\n\n//end of {tab_out} table\n'
+
+
 
         return {
             'top_line': top_line,
@@ -54,12 +56,21 @@ class TableFormat:
 
         if self.schema_out is None:
             schemas_ls = self.schemas.index.get_level_values(0).unique()
-
-        for sch in schemas_ls:
-            for tab in self.schemas.loc[sch, :].index.unique():
+            for sch in schemas_ls:
+                for tab in self.schemas.loc[sch, :].index.unique():
+                    self.print_table(
+                        sch_out=sch,
+                        tab_out=tab
+                    )
+        elif self.table_out is None:
+            for tab in self.schemas.loc[self.schema_out, :].index.unique():
                 self.print_table(
-                    sch_out=sch,
+                    sch_out=self.schema_out,
                     tab_out=tab
                 )
-
+        else:
+            self.print_table(
+                sch_out=self.schema_out,
+                tab_out=self.table_out
+            )
         return
