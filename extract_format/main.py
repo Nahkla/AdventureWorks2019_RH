@@ -16,17 +16,17 @@ db_info = load_schema.LoadSchema(
     db_df=AdventureWorks2019_info
 ).read_file()
 
-table_format = generate_table.TableFormat(
-    db_info=db_info,
-    schema_out='Sales',
-    table_out=None
-).automate_blocks()
+#table_format = generate_table.TableFormat(
+#    db_info=db_info,
+#    schema_out='Sales',
+#    table_out=None
+#).automate_blocks()
 
 test = define_relationships.DefineRel(
     db_info=db_info,
     schema_out='Sales',
-    table_out='Store',
+    table_out='Customer',
     connection=AdventureWorks2019
 ).check_cardinalities()
 
-
+print(test)
