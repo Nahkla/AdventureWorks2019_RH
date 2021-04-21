@@ -12,7 +12,8 @@ select schema_name(tab.schema_id) as [schema],
     end as rel,
     -- if foreign key is not null, then fill set with '>-' many to one direction, else null
     -- rename as rel
-    schema_name(pk_tab.schema_id) + '.' + pk_tab.name as primary_table,
+    schema_name(pk_tab.schema_id) as primary_schema,
+    pk_tab.name as primary_table,
     -- selects primary schema and table name as schema.table direction
     pk_col.name as pk_column_name,
     -- selects pk column

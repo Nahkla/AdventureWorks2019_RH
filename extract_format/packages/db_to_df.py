@@ -9,11 +9,13 @@ class ExecuteQuery:
         self.connection = connection
 
     def ex_query(self):
-
-        query_path = misc.load_rel_path(
-            directory='sql_queries',
-            filename=self.sql_query,
-            suffix=''
-        )
-        sql_query = open(query_path, 'r').read()
+        try:
+            query_path = misc.load_rel_path(
+                directory='sql_queries',
+                filename=self.sql_query,
+                suffix=''
+            )
+            sql_query = open(query_path, 'r').read()
+        except:
+            sql_query = self.sql_query
         return pd.read_sql(sql_query, self.connection)

@@ -5,15 +5,19 @@ class TableFormat:
 
     def __init__(
             self,
-            schemas,
+            db_info,
             schema_out,
             table_out
     ):
-        self.schemas = schemas
+        self.schemas = db_info
         self.schema_out = schema_out
         self.table_out = table_out
 
-    def format_block_increments(self, sch_out, tab_out):
+    def format_block_increments(
+            self,
+            sch_out,
+            tab_out
+    ):
 
         top_line = f'Table {sch_out}{tab_out}'  # \
         # + ' as '\
@@ -39,9 +43,16 @@ class TableFormat:
             'bottom_line': bottom_line
         }
 
-    def print_table(self, sch_out, tab_out):
+    def print_table(
+            self,
+            sch_out,
+            tab_out
+    ):
 
-        block = self.format_block_increments(sch_out, tab_out)
+        block = self.format_block_increments(
+            sch_out=sch_out,
+            tab_out=tab_out
+        )
 
         return print(
             block['top_line'],

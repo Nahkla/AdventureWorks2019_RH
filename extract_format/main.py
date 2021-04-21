@@ -1,5 +1,4 @@
-from packages import misc, load_schema, generate_table, db_to_df, load_sql
-
+from packages import misc, load_schema, generate_table, db_to_df, load_sql, define_relationships
 
 connection_details = misc.load_db_essentials()
 
@@ -13,12 +12,24 @@ AdventureWorks2019_info = db_to_df.ExecuteQuery(
     connection=AdventureWorks2019
 ).ex_query()
 
-schemas = load_schema.LoadSchema(
+db_info = load_schema.LoadSchema(
     db_df=AdventureWorks2019_info
 ).read_file()
 
-table_format = generate_table.TableFormat(
-    schemas=schemas,
+#table_format = generate_table.TableFormat(
+ #   db_info=db_info,
+ #   schema_out='Sales',
+ #   table_out='Store'
+#).automate_blocks()
+
+test = define_relationships.DefineRel(
+    db_info = db_info,
     schema_out='Sales',
-    table_out='Store'
-).automate_blocks()
+    table_out='Store',
+    connection=AdventureWorks2019
+).check_cardinalities()
+import pandas as pd
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+print(test)
+
