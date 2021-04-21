@@ -59,13 +59,19 @@ class DefineRel:
             ).ex_query() for query in queries
         ]
 
-        count_rows = [
-            [len(i), [len(i[col].unique()) for col in i.columns]] for i in relationship_dfs
+        row_count = [
+            dict(
+                zip(i, [len(i[col].unique()) for col in i.columns])) for i in relationship_dfs
         ]
 
-        return dict(
-            zip(participated_table_schemas, count_rows)
+        row_count = dict(
+            zip(participated_table_schemas, row_count)
         )
+
+        df_len = [len(i) for i in relationship_dfs]
+        df_len = dict(zip(participated_table_schemas, df_len))
+
+        return df_len, row_count
 
     def test(self):
         return self.get_relationships(self.schema_out, self.table_out)

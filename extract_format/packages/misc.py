@@ -39,7 +39,7 @@ def load_db_essentials():
         Loader = yaml.FullLoader) for essential in yml_filenames
              ]
 
-    print('connection details imported',*yml_filenames, sep='\n')
+    #print('connection details imported',*yml_filenames, sep='\n')
 
     return {
         'db_ls' : db_ls,

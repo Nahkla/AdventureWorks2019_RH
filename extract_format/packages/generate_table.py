@@ -19,10 +19,10 @@ class TableFormat:
             tab_out
     ):
 
-        top_line = f'Table {sch_out}{tab_out}'  # \
-        # + ' as '\
-        # + f'{sch_out[:2]}{tab_out[:2]}' \
-        # + ' {'
+        top_line = f'Table {sch_out}{tab_out} {{'   \
+         #+ ' as '\
+         #+ f'{sch_out[:2]}{tab_out[:2]}' \
+         #+ ' {'
         attributes, domains = [
             self.schemas.loc[pd.IndexSlice[(sch_out, tab_out)],
                              col] for col in ['column_name', 'domain']
