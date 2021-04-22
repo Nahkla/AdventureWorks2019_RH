@@ -1,0 +1,13 @@
+select s.name, t.name, ac.name, ty.name
+From sys.tables as t
+INNER JOIN
+sys.schemas as s
+on
+t.schema_id = s.schema_id
+Inner Join
+sys.all_columns as ac
+on
+t.object_id = ac.object_id
+Inner Join
+sys.types as ty
+on ty.system_type_id = ac.system_type_id
