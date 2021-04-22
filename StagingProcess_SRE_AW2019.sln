@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "StagingProcess_SRE_AW2019", "StagingProcess_SRE_AW2019\StagingProcess_SRE_AW2019.dtproj", "{41C45C4B-8C94-423D-8997-1564042AB617}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Azure|Default = Azure|Default
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41C45C4B-8C94-423D-8997-1564042AB617}.Azure|Default.ActiveCfg = Azure
+		{41C45C4B-8C94-423D-8997-1564042AB617}.Azure|Default.Build.0 = Azure
+		{41C45C4B-8C94-423D-8997-1564042AB617}.Development|Default.ActiveCfg = Development
+		{41C45C4B-8C94-423D-8997-1564042AB617}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E16329E-6447-40DA-A07E-FE97EBB0F1DB}
+	EndGlobalSection
+EndGlobal
