@@ -28,3 +28,5 @@ test = define_relationships.DefineRel(
     table_out='Customer',
     connection=AdventureWorks2019
 ).check_cardinalities()
+
+print(test)
