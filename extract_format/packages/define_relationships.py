@@ -88,7 +88,7 @@ class DefineRel:
             row_count[f'{self.schema_out}{self.table_out}'][i] for i in row_count[f'{self.schema_out}{self.table_out}'].keys()
         ]
 
-        return row_count#[i - index_comparison_level_0[j] for i,j in zip(initial_rel_count,
+        return initial_rel_count#[i - index_comparison_level_0[j] for i,j in zip(initial_rel_count,
 
     def test(self):
         return self.get_relationships(self.schema_out, self.table_out)
