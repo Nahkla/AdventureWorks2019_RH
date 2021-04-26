@@ -44,11 +44,11 @@ class DefineRel:
         )
         participated_table_schemas = relationship_df.loc[
             (self.schema_out, self.table_out), ['primary_schema', 'primary_table']]
-        participated_table_schemas = [f'{self.schema_out}{self.table_out}']+[''.join(i) for i in participated_table_schemas.values]
+        participated_table_schemas = [f'{self.schema_out}{self.table_out}'] + [''.join(i) for i in
+                                                                               participated_table_schemas.values]
         fk_columns = ['pk_column_name', 'primary_schema', 'primary_table']
         fk_relationship_df_info = relationship_df.loc[(self.schema_out, self.table_out), fk_columns]
         fk_ls = [fk_relationship_df_info.iloc[i, :].to_list() for i in range(len(fk_relationship_df_info))]
-        print(fk_relationship_df_info)
         queries = [initial_rel_query] + [
             query_func(
                 column_ls=[fk_ls[i][0]],
@@ -78,17 +78,21 @@ class DefineRel:
 
         index_comparison_level_0 = [
             dict(zip(k, [df_len[i] - row_count[i][j] for j in row_count[i].keys()]))
-            for i, k in zip(df_len.keys(),  [i.columns.tolist() for i in relationship_dfs])
+            for i, k in zip(df_len.keys(), [i.columns.tolist() for i in relationship_dfs])
         ]
 
-        index_comparison= dict(
+        index_comparison = dict(
             zip(participated_table_schemas, index_comparison_level_0)
         )
-        initial_rel_count = [
-            row_count[f'{self.schema_out}{self.table_out}'][i] for i in row_count[f'{self.schema_out}{self.table_out}'].keys()
-        ]
+        initial_rel_count = [[
+            row_count[outer_keys][key] for key in row_count[outer_keys].keys()
+        ] for outer_keys in row_count.keys()]
 
-        return initial_rel_count#[i - index_comparison_level_0[j] for i,j in zip(initial_rel_count,
+        initial_attributes = [[
+            f'{outer_keys}.{key}' for key in row_count[f'{outer_keys}'].keys()
+        ] for outer_keys in row_count.keys()]
+
+        return
 
     def test(self):
         return self.get_relationships(self.schema_out, self.table_out)

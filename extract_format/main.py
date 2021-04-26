@@ -25,7 +25,7 @@ db_info = load_schema.LoadSchema(
 test = define_relationships.DefineRel(
     db_info=db_info,
     schema_out='Sales',
-    table_out='Customer',
+    table_out='Store',
     connection=AdventureWorks2019
 ).check_cardinalities()
 
