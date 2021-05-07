@@ -1,3 +1,6 @@
-admin:
+admin_aw:
   username: 'adminuser'
   pw: '!jslAJAJls20dMn20'
+admin_aw_dwh:
+  username: 'adminuser'
+  pw: '!sAdn20aDDMaaj200'
